@@ -1,0 +1,27 @@
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  height: var(--top-bar-height);
+  padding-left: 1rem;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(20px);
+  z-index: 1;
+  &Title {
+    font-weight: bold;
+    font-family: 'Nabla', cursive;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .profileBadge {
+    padding: 0 1rem;
+  }
+}

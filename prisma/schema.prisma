@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "interactiveTransactions"]
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email      String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  go_links GoLink[]
+}
+
+model GoLink {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  short_name String
+  full_link  String
+
+  /// user who owns this exercise
+  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  params GoLinkParam[]
+
+  @@unique([user_id, short_name])
+}
+
+model GoLinkParam {
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  go_link_id            String @db.Uuid
+  path_parameter_number Int
+  query_parameter_name  String
+
+  go_link GoLink @relation(fields: [go_link_id], references: [id], onDelete: Cascade)
+
+  @@unique([go_link_id, path_parameter_number])
+  @@unique([go_link_id, query_parameter_name])
+}
