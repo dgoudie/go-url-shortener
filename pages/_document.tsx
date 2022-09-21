@@ -14,7 +14,7 @@ export default function Document() {
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' />
         <link
-          href='https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;1,300;1,500&family=Nabla&display=swap'
+          href='https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;1,300;1,500&family=Nabla&family=Fira+Mono&display=swap'
           rel='stylesheet'
         />
         <Script

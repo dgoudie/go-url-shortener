@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "GoLink" ADD COLUMN     "hits" INT4 NOT NULL DEFAULT 0;

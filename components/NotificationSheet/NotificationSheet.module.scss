@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  align-items: flex-start;
+  color: black;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+
+  &.WARNING {
+    background: #ffea7e;
+  }
+
+  &.ERROR {
+    background: #ff7e7e;
+  }
+
+  &.SUCCESS {
+    background: #a1f9a1;
+  }
+
+  .indicator {
+    padding: 0.75rem;
+  }
+  .text {
+    padding: 0.8rem 0;
+    flex: 1;
+  }
+}

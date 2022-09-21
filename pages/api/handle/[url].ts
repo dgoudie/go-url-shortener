@@ -21,7 +21,6 @@ const handler: NextApiHandler = async (req, res) => {
 
   const goLinkWithParams = await prisma.goLink.findFirst({
     where: { user_id, short_name },
-    include: { params: { orderBy: { path_parameter_number: 'asc' } } },
   });
 
   if (!goLinkWithParams) {
@@ -30,17 +29,21 @@ const handler: NextApiHandler = async (req, res) => {
       .end();
     return;
   }
-  const parsedUrl = new URL(goLinkWithParams.full_link);
-  const params = new URLSearchParams(parsedUrl.searchParams);
-  Array.from(parsedUrl.searchParams.keys()).forEach((key) =>
-    parsedUrl.searchParams.delete(key)
+  await prisma.goLink.update({
+    where: { id: goLinkWithParams.id },
+    data: { hits: { increment: 1 } },
+  });
+
+  let urlFromDatabase = goLinkWithParams.full_link;
+
+  urlFromDatabase = urlFromDatabase.replaceAll(
+    '%1',
+    !!param_1 ? encodeURIComponent(param_1) : ''
   );
-  if (!!param_1 && !!goLinkWithParams.params[0]) {
-    params.set(goLinkWithParams.params[0].query_parameter_name, param_1);
-  }
-  if (!!param_2 && !!goLinkWithParams.params[1]) {
-    params.set(goLinkWithParams.params[1].query_parameter_name, param_2);
-  }
-  res.redirect(`${parsedUrl}?${params.toString()}`).end();
+  urlFromDatabase = urlFromDatabase.replaceAll(
+    '%2',
+    !!param_2 ? encodeURIComponent(param_2) : ''
+  );
+  res.redirect(301, urlFromDatabase).end();
 };
 export default handler;

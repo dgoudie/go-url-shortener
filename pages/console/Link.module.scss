@@ -1,0 +1,79 @@
+.root {
+  max-width: 720px;
+  margin: 1rem auto 0;
+  padding: 0 0.75rem;
+
+  h1 {
+    margin: 0 0 0.5rem;
+    padding: 0;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--background-alt-2);
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    padding: 0.25rem 0;
+
+    &:focus {
+      border-bottom: 2px solid var(--accent-color);
+    }
+  }
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--background-alt);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.fieldError {
+  color: crimson;
+  font-size: 1rem;
+}
+
+.summary {
+  padding: 1rem 0;
+  color: #777;
+  line-height: 1.75;
+
+  .href {
+    color: initial;
+    font-family: 'Fira Mono', monospace;
+    background-color: var(--background-alt);
+    font-size: 90%;
+    padding: 2px 6px;
+    border-radius: 4px;
+    word-break: break-all;
+  }
+}
+
+.parameterSpan {
+  span[contentEditable] {
+    outline: none;
+  }
+  &.parameter1 {
+    color: hotpink;
+  }
+  &.parameter2 {
+    color: deepskyblue;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}

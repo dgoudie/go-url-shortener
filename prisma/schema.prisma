@@ -27,23 +27,10 @@ model GoLink {
   updated_at DateTime @default(now())
   short_name String
   full_link  String
+  hits       Int      @default(0)
 
   /// user who owns this exercise
   user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 
-  params GoLinkParam[]
-
   @@unique([user_id, short_name])
-}
-
-model GoLinkParam {
-  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  go_link_id            String @db.Uuid
-  path_parameter_number Int
-  query_parameter_name  String
-
-  go_link GoLink @relation(fields: [go_link_id], references: [id], onDelete: Cascade)
-
-  @@unique([go_link_id, path_parameter_number])
-  @@unique([go_link_id, query_parameter_name])
 }
