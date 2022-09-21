@@ -1,7 +1,6 @@
-import { withAuth } from 'next-auth/middleware';
+export { default } from 'next-auth/middleware';
 
-export default withAuth(function middleware(req) {}, {
-  pages: {
-    signIn: '/auth/signin',
-  },
-});
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: ['/console/links'],
+};
