@@ -3,11 +3,18 @@
 
 html,
 body {
+  --color: white;
+  --background: black;
+  --background-alt: #181818;
+  --accent-color: #ffe045;
   --top-bar-height: 3rem;
   padding: 0;
   margin: 0;
   font-family: 'Josefin Sans', sans-serif;
   font-size: initial;
+
+  color: var(--color);
+  background: var(--background);
 }
 
 *::-webkit-scrollbar {

@@ -1,3 +1,4 @@
+import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { NextAuthOptions } from 'next-auth';
 import hashEmail from './hash-email';
@@ -13,6 +14,10 @@ const nextAuthOptions: NextAuthOptions = {
           prompt: 'select_account',
         },
       },
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
   callbacks: {

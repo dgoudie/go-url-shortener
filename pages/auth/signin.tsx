@@ -20,10 +20,20 @@ const SignIn: NextPageWithLayout = () => {
         onClick={() =>
           signIn('google', { callbackUrl: query.callbackUrl as string })
         }
-        className={styles.signinButton}
+        className={classNames(styles.signinButton, styles.google)}
       >
         <Image width={18} height={18} alt='Google' src='/images/google.png' />
         <span>Sign in with Google</span>
+      </button>
+      <button
+        type='button'
+        onClick={() =>
+          signIn('github', { callbackUrl: query.callbackUrl as string })
+        }
+        className={classNames(styles.signinButton, styles.github)}
+      >
+        <Image width={18} height={18} alt='GitHub' src='/images/github.png' />
+        <span>Sign in with GitHub</span>
       </button>
     </div>
   );

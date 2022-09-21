@@ -50,7 +50,7 @@ export default function ProfileBadgeAndOptions({ className }: Props) {
       <div className={styles.detailsBody}>
         <button
           onClick={() => {
-            signOut({ callbackUrl: '/' });
+            signOut({ callbackUrl: '/console/links' });
             closeDetails();
           }}
         >

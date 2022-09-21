@@ -8,7 +8,8 @@ export default function Document() {
       <Head>
         <meta charSet='utf-8' />
         <meta name='robots' content='noindex' />
-        <meta name='color-scheme' content='light dark'></meta>
+        <meta name='color-scheme' content='dark' />
+        <meta name='theme-color' content='black' />
         <link rel='icon' type='image/png' href='/images/favicon.png'></link>
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' />
