@@ -50,7 +50,7 @@
   line-height: 1.75;
 
   .href {
-    color: inherit;
+    color: var(--color);
     font-family: 'Fira Mono', monospace;
     background-color: var(--background-alt);
     font-size: 90%;
