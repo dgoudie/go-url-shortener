@@ -166,7 +166,7 @@ const Links: NextPageWithLayout = () => {
         <Link href={'/console/link'}>
           <a className='standard-button primary'>
             <i className='fa-solid fa-link'></i>
-            Create Link
+            New Link
           </a>
         </Link>
       </div>
@@ -194,23 +194,16 @@ function LinkItem({ link, onDelete }: LinkItemProps) {
 
   return (
     <div className={classNames(styles.link, deleting && styles.deleting)}>
-      <a
-        href={link.full_link}
-        target='_blank'
-        rel='noreferrer'
-        className='left'
-      >
+      <a href={`/${link.short_name}`} target='_blank' rel='noreferrer'>
         <div className={styles.name}>
           <i className='fa-solid fa-arrow-up-right-from-square'></i>
           <div className={styles.text}>{link.short_name}</div>
         </div>
         <div className={styles.href}>{link.full_link}</div>
       </a>
-      <div className='right'>
-        <button type='button' onClick={onDeleteWrapper}>
-          <div className='fa-solid fa-xmark'></div>
-        </button>
-      </div>
+      <button type='button' onClick={onDeleteWrapper}>
+        <div className='fa-solid fa-xmark'></div>
+      </button>
     </div>
   );
 }

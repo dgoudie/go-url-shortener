@@ -1,13 +1,14 @@
 .root {
   max-width: 720px;
   margin: 1rem auto 0;
-  padding: 0 0.75rem;
+  padding-left: 0.75rem;
 }
 
 .metadata {
   background-color: var(--background-alt);
   border-radius: 8px;
   padding: 1rem;
+  margin-right: 0.75rem;
   h1 {
     padding: 0;
     margin: 0;
@@ -26,7 +27,7 @@
 }
 
 .header {
-  margin-top: 0.75rem;
+  margin: 0.75rem 0.75rem 0 0;
   display: flex;
   gap: 0.75rem;
 
@@ -63,6 +64,14 @@
   .href {
     font-size: 1.2rem;
     color: #aaa;
+    word-break: break-all;
+  }
+
+  > button {
+    align-self: stretch;
+    width: 3rem;
+    color: crimson;
+    flex-shrink: 0;
   }
 
   &.deleting {
