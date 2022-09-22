@@ -159,6 +159,10 @@ const Links: NextPageWithLayout = () => {
           className={styles.headerSearch}
           placeholder='Search links...'
           defaultValue={urlSearchParams.get('search') ?? ''}
+          spellCheck={false}
+          autoCapitalize={'off'}
+          autoCorrect='off'
+          autoComplete='off'
           onInput={(event) => {
             navigate('search', (event.target as HTMLInputElement).value);
           }}
