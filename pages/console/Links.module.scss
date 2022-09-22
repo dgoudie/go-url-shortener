@@ -41,6 +41,7 @@
   flex-direction: column;
   gap: 1.3rem;
   margin-top: 1.3rem;
+  padding-bottom: 2rem;
 }
 
 .link {
@@ -61,10 +62,17 @@
       line-height: 16px;
     }
   }
-  .href {
-    font-size: 1.2rem;
-    color: #aaa;
-    word-break: break-all;
+  > a {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    .href {
+      font-size: 1.2rem;
+      color: #aaa;
+      line-height: 1.2;
+    }
   }
 
   > button {
