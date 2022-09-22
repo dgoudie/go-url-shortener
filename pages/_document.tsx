@@ -13,6 +13,14 @@ export default function Document() {
         <link rel='icon' type='image/png' href='/images/favicon.png'></link>
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' />
+        {process.env.VERCEL_ENV === 'production' && (
+          <link
+            rel='search'
+            type='application/opensearchdescription+xml'
+            title='go.goudie.dev'
+            href='/opensearch.xml'
+          />
+        )}
         <link
           href='https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;1,300;1,500&family=Nabla&family=Fira+Mono&display=swap'
           rel='stylesheet'
