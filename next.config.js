@@ -18,13 +18,16 @@ const nextConfig = {
       },
     ];
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: '/:name((?!console|api|auth|setup)[^/]+)/:parameters*',
         destination: '/api/handle/:name/:parameters*',
-        permanent: true,
       },
+    ];
+  },
+  async redirects() {
+    return [
       {
         source: '/',
         destination: '/console/links',

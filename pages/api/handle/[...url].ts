@@ -39,6 +39,7 @@ const handler: NextApiHandler = async (req, res) => {
     '%2',
     !!param_2 ? encodeURIComponent(param_2) : ''
   );
+  res.setHeader('cache-control', 'stale-while-revalidate');
   res.redirect(301, urlFromDatabase).end();
 };
 export default handler;
