@@ -41,7 +41,7 @@ const handler: NextApiHandler = async (req, res) => {
   );
   res.setHeader(
     'Cache-Control',
-    'public, max-age=15, stale-while-revalidate=31536000'
+    'private, max-age=15, stale-while-revalidate=31536000'
   );
   res.redirect(301, urlFromDatabase).end();
 };
