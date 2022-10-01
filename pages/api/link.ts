@@ -2,6 +2,7 @@ import { NextApiHandler } from 'next';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { getUserId } from '../../utils/get-user-id';
 import prisma from '../../database/prisma';
+import { validateName } from '../../utils/validate-name';
 import { validateUrl } from '../../utils/validate-url';
 
 const handler: NextApiHandler = async (req, res) => {
@@ -49,13 +50,3 @@ const handler: NextApiHandler = async (req, res) => {
   }
 };
 export default handler;
-
-function validateName(name: string) {
-  if (typeof name !== 'string') {
-    return false;
-  }
-  if (!name.match(/^[\w\-_]+$/)) {
-    return false;
-  }
-  return true;
-}

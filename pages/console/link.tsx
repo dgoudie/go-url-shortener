@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import AppHeaderLayout from '../../layouts/AppHeaderLayout/AppHeaderLayout';
 import Link from 'next/link';
@@ -11,17 +11,28 @@ import classNames from 'classnames';
 import styles from './Link.module.scss';
 import { useHeadWithTitle } from '../../utils/use-head-with-title';
 import { useRouter } from 'next/router';
+import { validateName } from '../../utils/validate-name';
 import { validateUrl } from '../../utils/validate-url';
 
 const LinkSchema = Yup.object().shape({
   name: Yup.string()
     .matches(
-      /^[\w\-_]+$/,
-      'Name must only contain letters, numbers, underscores, and hyphens.'
+      /^[a-z0-9\-_]+$/,
+      'Name must only contain lowercase letters, numbers, underscores, and hyphens.'
     )
     .max(128, 'Name cannot be more than 128 characters.')
-    .required('Name is required.'),
+    .required('Name is required.')
+    .test({
+      name: 'valid-name',
+      test(value, ctx) {
+        if (!validateName(value)) {
+          return ctx.createError({ message: `Name cannot be '${value}'` });
+        }
+        return true;
+      },
+    }),
   link: Yup.string()
+    .required('Link is required.')
     .test({
       name: 'valid-url',
       test(value, ctx) {
@@ -30,8 +41,7 @@ const LinkSchema = Yup.object().shape({
         }
         return true;
       },
-    })
-    .required('Link is required.'),
+    }),
 });
 
 const CreateLink: NextPageWithLayout = () => {
@@ -76,16 +86,30 @@ const CreateLink: NextPageWithLayout = () => {
         }}
       >
         {({ isValid, values }) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const nameInputRef = useRef<HTMLInputElement>();
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          useEffect(() => {
+            nameInputRef.current?.focus();
+          }, []);
           return (
             <Form className={styles.form}>
               <div className={styles.control}>
                 <label htmlFor='name'>Name</label>
-                <Field id='name' name='name' placeholder='example' />
-                <ErrorMessage
+                <Field
+                  id='name'
                   name='name'
-                  className={styles.fieldError}
-                  component='div'
+                  placeholder='example'
+                  className={styles.name}
+                  innerRef={nameInputRef}
                 />
+                <div className={styles.fieldErrorWrapper}>
+                  <ErrorMessage
+                    name='name'
+                    className={styles.fieldError}
+                    component='div'
+                  />
+                </div>
               </div>
               <div className={styles.control}>
                 <label htmlFor='link'>Link</label>
@@ -95,11 +119,13 @@ const CreateLink: NextPageWithLayout = () => {
                   placeholder='https://example.com'
                   type='url'
                 />
-                <ErrorMessage
-                  name='link'
-                  className={styles.fieldError}
-                  component='div'
-                />
+                <div className={styles.fieldErrorWrapper}>
+                  <ErrorMessage
+                    name='link'
+                    className={styles.fieldError}
+                    component='div'
+                  />
+                </div>
               </div>
               <Summary valid={isValid} name={values.name} link={values.link} />
               <div className={styles.actions}>

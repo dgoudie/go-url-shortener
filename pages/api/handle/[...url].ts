@@ -10,14 +10,9 @@ const handler: NextApiHandler = async (req, res) => {
       .end();
     return;
   }
-  const url: string = req.query.url as string;
-  if (typeof url !== 'string') {
-    res.status(400).end();
-    return;
-  }
-  const [short_name, param_1, param_2] = url
-    .split('/')
-    .filter((segment) => !!segment?.length);
+  const url: string[] = req.query.url as string[];
+
+  const [short_name, param_1, param_2] = url;
 
   const goLinkWithParams = await prisma.goLink.findFirst({
     where: { user_id, short_name },

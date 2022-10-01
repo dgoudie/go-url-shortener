@@ -8,15 +8,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:param_1*',
-        headers: [
-          {
-            key: 'cache-control',
-            value: 'stale-while-revalidate',
-          },
-        ],
-      },
-      {
         source: '/api/link',
         headers: [
           {
@@ -29,6 +20,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/:name((?!console|api|auth|setup)[^/]+)/:parameters*',
+        destination: '/api/handle/:name/:parameters*',
+        permanent: true,
+      },
       {
         source: '/',
         destination: '/console/links',

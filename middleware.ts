@@ -1,5 +1,5 @@
 export { default } from 'next-auth/middleware';
 
 export const config = {
-  matcher: ['/console/links'],
+  matcher: ['/console/links', '/console/link', '/setup'],
 };

@@ -27,6 +27,10 @@
     &:focus {
       border-bottom: 2px solid var(--accent-color);
     }
+
+    &.name {
+      text-transform: lowercase;
+    }
   }
 }
 
@@ -42,6 +46,10 @@
 .fieldError {
   color: crimson;
   font-size: 1rem;
+
+  &Wrapper {
+    height: 1rem;
+  }
 }
 
 .summary {
