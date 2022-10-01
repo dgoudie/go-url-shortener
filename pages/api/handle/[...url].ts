@@ -39,7 +39,6 @@ const handler: NextApiHandler = async (req, res) => {
     '%2',
     !!param_2 ? encodeURIComponent(param_2) : ''
   );
-  res.setHeader('Cache-Control', 'private, max-age=31536000');
-  res.redirect(301, urlFromDatabase).end();
+  res.redirect(307, urlFromDatabase).end();
 };
 export default handler;
